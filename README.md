@@ -1,93 +1,130 @@
-# 🤖 30 AI Agents in 30 Days
+# 📰 ➡️ 🎙️ Blog to Podcast Agent
 
-Build 30 real-world AI agents in 30 days — exploring Agentic AI, RAG, tool usage, memory, orchestration, and production-grade AI system design.
-
----
-
-## 📌 Overview
-
-This repository documents a structured challenge to design and implement **30 independent AI agents**, each focused on a unique real-world use case or architectural concept.
-
-The goal is to deeply explore how modern AI agents:
-
-- Reason step-by-step  
-- Use tools dynamically  
-- Maintain memory  
-- Retrieve external knowledge  
-- Execute multi-step workflows  
-- Operate in production-style environments  
+Convert any blog article into a spoken podcast using AI — just paste a URL and get an audio file in seconds.
 
 ---
 
-## 🎯 Objectives
+## How It Works
 
-- Build 30 functional AI agents
-- Explore diverse agent architectures
-- Implement real-world AI automation use cases
-- Understand system-level AI design patterns
-- Create a structured AI engineering portfolio
-
----
-
-## 🧠 Concepts Explored
-
-Across the 30 agents, the following areas are covered:
-
-### Agent Architectures
-- Single-tool agents
-- Multi-tool agents
-- Planner–Executor systems
-- Hierarchical agents
-- Multi-agent collaboration
-
-### Core Capabilities
-- Retrieval-Augmented Generation (RAG)
-- Dynamic tool calling
-- Short-term and long-term memory
-- Context management
-- Self-reflection and iterative reasoning
-- Guardrails & safety constraints
-
-### System-Level Engineering
-- Observability & logging
-- Evaluation frameworks
-- Failure handling & retries
-- Rate limiting & cost optimization
-- Scalability considerations
+1. You paste a blog URL into the app
+2. An AI agent scrapes and reads the article
+3. Mistral AI summarizes it into a conversational podcast script
+4. gTTS converts the script into spoken audio
+5. You listen or download the mp3
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Category | Tools & Technologies |
-|----------|----------------------|
-| Language | Python / Node.js |
-| Frameworks | Google ADK, LangChain, Custom Orchestration |
-| LLMs | Gemini, GPT-family models, Open-source LLMs |
-| Vector Stores | FAISS, Chroma |
-| Protocols | MCP (Model Context Protocol) |
-| Deployment | Local / Cloud-based |
-
----
-
-## 🚀 End Goal
-
-By the end of 30 days:
-
-- 30 working AI agents
-- Reusable agent templates
-- Production-ready architecture patterns
-- Strong understanding of Agentic AI systems
-- Public portfolio demonstrating applied AI engineering
+| Tool | Purpose |
+|---|---|
+| [Agno](https://github.com/agno-agi/agno) | Agent framework |
+| [Mistral AI](https://mistral.ai/) | LLM for summarization |
+| [Newspaper4k](https://github.com/AndyTheFactory/newspaper4k) | Web article scraping |
+| [gTTS](https://gtts.readthedocs.io/) | Text to speech |
+| [Streamlit](https://streamlit.io/) | Web UI |
 
 ---
 
-## 🤝 Contribution
+## Setup
 
-This project is currently a personal challenge, but feedback, suggestions, and discussions are welcome.
+### 1. Clone the repo
+```bash
+git clone https://github.com/yourusername/blog-to-podcast.git
+cd blog-to-podcast
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Get your API key
+You only need one API key — **Mistral AI** (free, no credit card required):
+
+1. Go to [console.mistral.ai](https://console.mistral.ai)
+2. Sign up and click **API Keys** in the sidebar
+3. Click **Create new key** and copy it
+
+### 4. Run the app
+```bash
+streamlit run app.py
+```
 
 ---
 
-## 📄 License
+## Usage
+
+1. Open the app in your browser (usually `http://localhost:8501`)
+2. Paste your **Mistral API key** in the sidebar
+3. Enter a blog URL in the input field
+4. Click **🎙️ Generate Podcast**
+5. Listen in the browser or click **Download Podcast** to save the mp3
+
+---
+
+## Requirements
+
+```
+agno
+mistralai
+streamlit
+newspaper4k
+lxml_html_clean
+certifi
+gtts
+```
+
+---
+
+## URLs That Work Well
+
+Newspaper4k works best with open, public blogs. Use these types of sites:
+
+✅ Works well:
+- `thepythoncode.com`
+- `learnpython.com/blog`
+- `thenewstack.io`
+- `hostinger.com/tutorials`
+
+❌ Avoid (blocks scrapers):
+- `medium.com` → 403 error
+- `netflixtechblog.com` → SSL issues
+- `devops.com` → 403 error
+
+---
+
+## Project Structure
+
+```
+blog-to-podcast/
+│
+├── app.py              # Main Streamlit app
+├── requirements.txt    # Python dependencies
+└── README.md           # This file
+```
+
+---
+
+## Troubleshooting
+
+| Error | Cause | Fix |
+|---|---|---|
+| `401 Unauthorized` | Wrong API key | Get a fresh key from console.mistral.ai |
+| `403 Forbidden` | Site blocks scrapers | Try a different blog URL |
+| `SSL Certificate Error` | Python SSL issue | Already fixed in code via certifi |
+| `404 Not Found` | Article deleted/moved | Try a different URL |
+
+---
+
+## Limitations
+
+- gTTS requires an internet connection to generate audio
+- Very long articles are trimmed to avoid hitting model limits
+- Some websites actively block automated scraping
+
+---
+
+## License
 
 MIT License — free to use and modify.
